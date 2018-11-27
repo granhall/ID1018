@@ -2,6 +2,7 @@
 that are on the shortest path. The ordinal number of the first station is located in index
 1 of the vector, and the second station on index 2. */
 
+package OU3;
 
 class TheShortestPath {
     public static int [] intermediateStations ( double [] a, double [] [] b, double [] c) {

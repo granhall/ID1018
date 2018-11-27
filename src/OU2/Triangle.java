@@ -1,6 +1,5 @@
 package OU2;
 
-import java.util.*; //Scanner & Locale
 class Triangle {
 
     

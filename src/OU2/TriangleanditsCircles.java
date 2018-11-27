@@ -6,7 +6,7 @@ class TriangleanditsCircles {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         in. useLocale ( Locale .US );
-        System.out.println("Hello, what do you want to calculate?: ");
+        System.out.println("Hello, what do you want to calculate?: /n ");
         System.out.println("For bisector length, using two sides and the angle in between them, enter: 1 ");
         System.out.println("For area using two lengths and the angle between them, enter: 2  ");
         System.out.println("For area using base and height, enter: 3 ");

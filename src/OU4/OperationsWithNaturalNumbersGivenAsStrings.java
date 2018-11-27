@@ -1,5 +1,5 @@
 package OU4;
-//Cool!, now to put this on github we deleted all the respositories????? How is 'hi' still there... it is not... but the info on the vcs file of the project is still here... wait a second
+
 import java . util .*; // Scanner
 import static java . lang . System . out ;
 @SuppressWarnings("Duplicates")
