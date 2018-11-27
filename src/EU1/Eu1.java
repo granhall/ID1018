@@ -1,3 +1,5 @@
+package EU1;
+
 import java.util.*;
 
 public class Eu1 {
@@ -10,8 +12,10 @@ public static void main(String[] args) {
     for (int i = 0; i < elements.length; i++){
         elements[i] = in.nextInt(); 
     }
-    System.out.println("The least element is: " + miniumum(elements));    
+    System.out.println("The least element is: " + minimum(elements));
+
 }
+
 
 // The min method returns the least element in a sequential
 // collection . If the collection is empty an
@@ -29,7 +33,7 @@ int nofPossibleElements = nofPairs + nofUnpairedElements ;
 int [] partialSeq = new int [ nofPossibleElements ];
 int i = 0;
 int j = 0;
-while ( nofPairs *2 + nofUnpairedElements > 1)
+while ( nofPairs *2 + nofUnpairedElements > 1) // this was previously sequence.length
 {
 // extract a partial sequence of possible elements
 i = 0;
@@ -41,7 +45,7 @@ sequence [i] : sequence [i + 1];
 i += 2;
 }
 if ( nofUnpairedElements == 1)
-partialSeq [j-1] = sequence [ sequence . length - 1];
+partialSeq [j-1] = sequence [ (nofPairs*2 + nofUnpairedElements) - 1]; // This used to also be sequence.length  //TODO: Find a reason for this
 // now turn to the partial sequence
 sequence = partialSeq ;
 nofPairs = nofPossibleElements / 2;
@@ -59,7 +63,7 @@ System . exit (0);
 return sequence [0];
 }
 
-    public static int miniumum (int [] elements) {
+    private static int minimum (int [] elements) {
         int smallest = elements[0];
 
         for(int i = 0; i < elements.length; i++) {
@@ -70,5 +74,16 @@ return sequence [0];
         
         return smallest;  
 }
-
+//    private static int minimum (int [] elements) {
+//    int smallest = elements[0];
+//        for (int i :elements) {
+//            if (smallest > elements[i]){
+//                smallest = elements[i];
+//            }
+//
+//        }
+//        return smallest;
+//    }
 }
+
+// Should be all good now ? :D Yeah, it seems everything is working... if you want to get the repo on another pc do that...
