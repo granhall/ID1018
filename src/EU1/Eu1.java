@@ -45,7 +45,7 @@ sequence [i] : sequence [i + 1];
 i += 2;
 }
 if ( nofUnpairedElements == 1)
-partialSeq [j-1] = sequence [ (nofPairs*2 + nofUnpairedElements) - 1]; // This used to also be sequence.length  //TODO: Find a reason for this
+partialSeq [j-1] = sequence [ (nofPairs*2 + nofUnpairedElements) - 1]; // This used to also be sequence.length
 // now turn to the partial sequence
 sequence = partialSeq ;
 nofPairs = nofPossibleElements / 2;
@@ -85,5 +85,3 @@ return sequence [0];
 //        return smallest;
 //    }
 }
-
-// Should be all good now ? :D Yeah, it seems everything is working... if you want to get the repo on another pc do that...
