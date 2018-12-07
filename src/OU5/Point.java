@@ -1,9 +1,9 @@
 package OU5;
 
 public class Point {
-    String name;
-    int x;
-    int y;
+    private String name;
+    private int x;
+    private int y;
 
     public Point(){   //default constructor
     }
