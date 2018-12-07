@@ -19,6 +19,9 @@ public class Point {
         x = p.x;
         y = p.y;
     }
+    public String toString(){
+        return "(" + this.name + "," + this.x + "," + this.y + ")";
+}
 
     public String getName() {
         return name;
