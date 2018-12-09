@@ -1,5 +1,5 @@
 package OU5;
-
+@SuppressWarnings("Duplicates")
 public class Polyline {
     private Point[] vertices;
     private String colour = "black";
@@ -62,6 +62,7 @@ public class Polyline {
         this.vertices = h;
     }
     public void addBefore (Point vertex, String vertexName) {
+        Point refvertex = new Point(vertex); // copying in order for code to use a reference to parameter instead of parameter itself
         Point [] newArray = new Point[vertices.length + 1]; // new array one slot larger
         int current = 0;
         for (int i = 0; i < this.vertices.length; i++) {
@@ -70,7 +71,7 @@ public class Polyline {
                 break;
             }
         }
-            newArray[current]= vertex; //set the point at position current to new vertex provided
+            newArray[current]= refvertex; //set the point at position current to new vertex provided
         for (int i = 0; i < newArray.length - 1; i++){
             newArray[i < current ? i : i + 1] = this.vertices[i]; // This skips the position current with the selector.
 
@@ -87,7 +88,14 @@ public class Polyline {
                 break;
             }
         }
-        for (int i = 0; i < newArray.length; i++) {
+        for (int i = 0; i < current; i++) { // copies values of this.vertices up to but not including the removed index 'current'
+            newArray[i] = this.vertices[i];
+        }
+        for (int i = current; i < newArray.length; i++){ // continues copying values until end of array length but values jump over removed index
+            newArray[i] = this.vertices[i + 1];
+        }
+
+        this.vertices = newArray; // creates new reference to the array with the vertex removed.
     }
 
 }
