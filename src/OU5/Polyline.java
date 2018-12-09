@@ -71,12 +71,23 @@ public class Polyline {
             }
         }
             newArray[current]= vertex; //set the point at position current to new vertex provided
-        for (int i = 0; i < newArray.length - 1; i--){
+        for (int i = 0; i < newArray.length - 1; i++){
             newArray[i < current ? i : i + 1] = this.vertices[i]; // This skips the position current with the selector.
 
         }
         this.vertices = newArray; // creates new reference to the array with the vertex added.
     }
 
-    public  void remove (String vertexName){}
+    public  void remove (String vertexName) {
+        Point[] newArray = new Point[vertices.length - 1];
+        int current = 0;
+        for (int i = 0; i < this.vertices.length; i++){
+            if (this.vertices[i].getName().equals(vertexName)){
+                current = i;
+                break;
+            }
+        }
+        for (int i = 0; i < newArray.length; i++) {
+    }
+
 }
