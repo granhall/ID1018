@@ -25,7 +25,11 @@ public class Polyline {
     }
 
     public  Point[] getVertices () { // Unsure about this
-        return this.vertices;
+        Point[] gvertices = new Point[vertices.length];
+        for (int i = 0; i < this.vertices.length; i++) {
+            gvertices[i] = new Point(vertices[i]);
+        }
+        return gvertices;
     }
 
     public  String getColour() {

@@ -26,7 +26,7 @@ public class Polyline1 {
         return "(" + pointinfo + " " + colour + " " + width + ")";
     }
     public Point[] getVertices() {
-        return vertices;
+        return this.vertices;
     }
     public String getColour(){
         return colour;
