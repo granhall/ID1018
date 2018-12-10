@@ -112,16 +112,14 @@ public class Polyline {
                 current = 0;
             }
         }
-
         public boolean hasVertex() {
             return current != -1;
         }
         public Point vertex () throws java.util.NoSuchElementException {
-            if (!this.hasVertex()) {
+            if (!this.hasVertex())
                 throw new java.util.NoSuchElementException("End of Iteration");
-                Point vertex = new Polyline.this.vertices[current]; //TODO fix this?
+                Point vertex = new Point (Polyline.this.vertices[current]);
                 return vertex;
-            }
         }
         public void advance () {
             if (current >= 0 && current < Polyline.this.vertices.length -1) {

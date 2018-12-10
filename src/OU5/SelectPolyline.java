@@ -13,11 +13,21 @@ public class SelectPolyline {
             polylines[i] = randomPolyline();
         }
             // Show the Polyline
+        for (Polyline poly: polylines) {
+            System.out.println(poly);
+        }
 
             //Determine the shortest yellow polyline
-
+        double shortestY = Double.MAX_VALUE; //declare shortest variable
+        Polyline yellowPoly = new Polyline(); // create new polyline object
+        for (Polyline poly: polylines) {
+            if (poly.getColour().equals("yellow") && (poly.length() < shortestY)) { // cycle through using update strategy
+                yellowPoly = poly;
+                shortestY = poly.length();
+            }
+        }
             //show the selected polyline
-
+        System.out.println(" The shortest yellow polyline is: " + yellowPoly + " with the length" + shortestY ); // using toString method provided earlier
     }
     // The randomPoint method returns a new Point with a name
 // randomly chosen from the single letters A--Z. Coordinates
@@ -38,12 +48,14 @@ public class SelectPolyline {
         int nofVertices = 2 + rand . nextInt (7);
         int nofSelectedVertices = 0;
         boolean [] selectedNames = new boolean [26];
+
         // Two vertices can not have the same name
         Point chosenPoint = null ;
         char chosenChar = 0;
         while ( nofSelectedVertices < nofVertices ) {
 
         }
+
 // Assign a colour
     }
 }
