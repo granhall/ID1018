@@ -25,7 +25,7 @@ public class Polyline {
         return "(" + pointinfo + " " + colour + " " + width + ")";
     }
 
-    public Point[] getVertices() { // Unsure about this
+    public Point[] getVertices() { // Unsure about this.
         Point[] gvertices = new Point[vertices.length];
         for (int i = 0; i < this.vertices.length; i++) {
             gvertices[i] = new Point(vertices[i]);
