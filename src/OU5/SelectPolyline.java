@@ -13,17 +13,16 @@ public class SelectPolyline {
             polylines[i] = randomPolyline();
         }
             // Show the Polyline
-        for (Polyline poly: polylines) {
-            System.out.println(poly);
+        for (int i = 0; i < NOF_POLYLINES; i++){
+            System.out.println((i+1) + " : " + polylines[i].toString() + " length of: " + polylines[i].length());
         }
-
             //Determine the shortest yellow polyline
         double shortestY = Double.MAX_VALUE; //declare shortest variable
         Polyline yellowPoly = new Polyline(); // create new polyline object
         for (Polyline poly: polylines) {
             if (poly.getColour().equals("yellow") && (poly.length() < shortestY)) { // cycle through using update strategy
-                yellowPoly = poly;
-                shortestY = poly.length();
+                yellowPoly = poly; // if yellow condition is met
+                shortestY = poly.length(); // if length condition is met
             }
         }
             //show the selected polyline
@@ -52,11 +51,31 @@ public class SelectPolyline {
         // Two vertices can not have the same name
         Point chosenPoint = null ;
         char chosenChar = 0;
+
         while ( nofSelectedVertices < nofVertices ) {
 
+            chosenPoint = randomPoint();
+            boolean selected = selectedNames[chosenPoint.getName().charAt(0)-65];
+            if (!selected){
+                selectedNames[chosenPoint.getName().charAt(0)-65] = true;
+                polyline.addLast(chosenPoint);
+                nofSelectedVertices++;
+            }
         }
-
 // Assign a colour
+        polyline.setColour(randomColour());
+        return polyline;
+    }
+    public static String randomColour(){
+        String colour = "";
+        int randColour = rand.nextInt(3);
+        if (randColour == 0) {
+            colour = "blue";
+        } else if (randColour == 1) {
+            colour = "red";
+        } else if (randColour == 2) {
+            colour = "yellow";
+        }
+        return  colour;
     }
 }
-//fix
