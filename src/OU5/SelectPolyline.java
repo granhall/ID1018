@@ -26,7 +26,7 @@ public class SelectPolyline {
             }
         }
             //show the selected polyline
-        System.out.println(" The shortest yellow polyline is: " + yellowPoly + " with the length" + shortestY ); // using toString method provided earlier
+        System.out.println(" The shortest yellow polyline is: " + yellowPoly + " with the length: " + shortestY ); // using toString method provided earlier
     }
     // The randomPoint method returns a new Point with a name
 // randomly chosen from the single letters A--Z. Coordinates
