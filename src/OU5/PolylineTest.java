@@ -31,6 +31,12 @@ public class PolylineTest {
         poly.remove("C");
         System.out.println(poly);
 
+        Polyline.PolylineIterator iterator = poly.new PolylineIterator();
+        System.out.println("Iterator Test: ");
+            while (iterator.hasVertex()){
+                System.out.println(iterator.vertex().getName() + "," + iterator.vertex().getX() + ", " + iterator.vertex().getY());
+                iterator.advance();
+        }
 
 
     }
