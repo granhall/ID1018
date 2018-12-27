@@ -7,15 +7,28 @@ public class Chessboard {
         private Chesspiece piece = null;
         private boolean marked = false;
 
-        public Field (char row, byte column){}
+        public Field (char row, byte column){
+            this.row = row;
+            this.column = column;
+        }
 
-        public  void put (Chesspiece piece){}
+        public  void put (Chesspiece piece){
+            this.piece = piece;
+        }
 
-        public Chesspiece take () {}
+        public Chesspiece take () {
+            Chesspiece temp = this.piece;
+            this.piece = null;
+            return temp;
+        }
 
-        public void mark (){}
+        public void mark (){
+            this.marked = true;
+        }
 
-        public void unmark (){}
+        public void unmark (){
+            this.marked = false;
+        }
 
         public String toString () {
             String s = (marked)? "xx" : "--";
@@ -42,8 +55,25 @@ public class Chessboard {
             }
         }
     }
-    public String toString(){}
-    public boolean isValidField (char row, byte column){}
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < NUMBER_OF_COLUMNS; i++){
+            sb.append(" ");
+            sb.append((i + 1));
+        }
+        for (int i = 0; i < NUMBER_OF_ROWS; i++){
+            char rows = (char)(FIRST_ROW + i);
+            sb.append(rows + " ");
+            for (int j = 0; j < NUMBER_OF_COLUMNS; j++){
+                sb.append(fields[i][j].toString() + " ");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+    public boolean isValidField (char row, byte column){
+        return row >= 'a' && row <= 'h' && column > 0 && column <= NUMBER_OF_COLUMNS;
+    }
 
     public abstract class Chesspiece {
         private char color; //w - white, b - black
@@ -57,7 +87,7 @@ public class Chessboard {
         public boolean isOnBoard () {
             return Chessboard.this.isValidField(row,column);
         }
-        public void moveTo (char row, byte column)throws NotValidFieldException {
+        public void moveTo (char row, byte column)throws NotValidFieldException { //Exception found in separate file
             if (!Chessboard.this.isValidField(row,column)) throw new NotValidFieldException ("bad field: " + row + column);
             this.row = row;
             this.column = column;
@@ -65,7 +95,10 @@ public class Chessboard {
             int c = column - FIRST_COLUMN;
             Chessboard.this.fields[r][c].put(this);
         }
-        public void  moveOut(){}
+
+        public void  moveOut(){
+            fields[this.row-FIRST_ROW][this.column].take();
+        }
         public abstract void markReachableFields();
         public abstract void unmarkReachableFields();
     }
@@ -90,7 +123,43 @@ public class Chessboard {
             }
         }
     }
-    public class Rook extends Chesspiece {}
+    public class Rook extends Chesspiece {
+        public Rook (char color, char name){
+            super(color, name);
+        }
+        public void markReachableFields() {
+            int r = row - FIRST_ROW;
+            int c = column - FIRST_COLUMN;
+            for (int i = 0; i < r; i++){
+                Chessboard.this.fields[i][c].mark();
+            }
+            for (int i = 0; i < c; i++){
+                Chessboard.this.fields[r][i].mark();
+            }
+            for (int i = r + 1; i < NUMBER_OF_ROWS; i++){
+                Chessboard.this.fields[i][c].mark();
+            }
+            for (int i = c + 1; i < NUMBER_OF_COLUMNS; i++){
+                Chessboard.this.fields[r][i].mark();
+            }
+        }
+        public void unmarkReachableFields() {
+            int r = row - FIRST_ROW;
+            int c = column - FIRST_COLUMN;
+            for (int i = 0; i < r; i++){
+                Chessboard.this.fields[i][c].unmark();
+            }
+            for (int i = 0; i < c; i++){
+                Chessboard.this.fields[r][i].unmark();
+            }
+            for (int i = r + 1; i < NUMBER_OF_ROWS; i++){
+                Chessboard.this.fields[i][c].unmark();
+            }
+            for (int i = c + 1; i < NUMBER_OF_COLUMNS; i++){
+                Chessboard.this.fields[r][i].unmark();
+            }
+        }
+    }
     public class Knight extends Chesspiece {}
     public class Bishop extends Chesspiece {}
     public class Queen extends Chesspiece {}
