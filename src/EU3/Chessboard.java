@@ -160,7 +160,17 @@ public class Chessboard {
             }
         }
     }
-    public class Knight extends Chesspiece {}
+    public class Knight extends Chesspiece {
+        public Knight (char color, char name){
+            super(color, name);
+        }
+        public void markReachableFields() {
+            int r = row - FIRST_ROW;
+            int c = column - FIRST_COLUMN;
+            int i = r +2;
+            int j = c + 1;
+            if (i < NUMBER_OF_ROWS)
+    }
     public class Bishop extends Chesspiece {}
     public class Queen extends Chesspiece {}
     public class King extends Chesspiece {}
