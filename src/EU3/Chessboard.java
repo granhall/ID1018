@@ -11,18 +11,6 @@ public class Chessboard {
             this.row = row;
             this.column = column;
         }
-        public char getRow(){
-            return this.row;
-        }
-        public byte getColumn(){
-            return this.column;
-        }
-        public void setRow(char r){
-            this.row = r;
-        }
-        public void setColumn(byte c){
-            this.column = c;
-        }
 
         public void put(Chesspiece piece) {
             this.piece = piece;
@@ -72,9 +60,10 @@ public class Chessboard {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < NUMBER_OF_COLUMNS; i++) {
-            sb.append(" ");
+            sb.append("  ");
             sb.append((i + 1));
         }
+        sb.append("\n");
         for (int i = 0; i < NUMBER_OF_ROWS; i++) {
             char rows = (char) (FIRST_ROW + i);
             sb.append(rows + " ");
@@ -84,6 +73,9 @@ public class Chessboard {
             sb.append("\n");
         }
         return sb.toString();
+    }
+    public void setField (Chesspiece piece){
+        this.fields[(int)(piece.getRow()-FIRST_ROW)][(int)piece.getColumn()-FIRST_COLUMN].piece = piece;
     }
 
     public boolean isValidField(char row, byte column) {
@@ -105,6 +97,19 @@ public class Chessboard {
 
         public boolean isOnBoard() {
             return Chessboard.this.isValidField(row, column);
+        }
+
+        public char getRow(){
+            return this.row;
+        }
+        public byte getColumn(){
+            return this.column;
+        }
+        public void setRow(char r){
+            this.row = r;
+        }
+        public void setColumn(byte c){
+            this.column = c;
         }
 
         public void moveTo(char row, byte column) throws NotValidFieldException { //Exception found in separate file
@@ -342,6 +347,7 @@ public class Chessboard {
                 Chessboard.this.fields[i++][j--].unmark();
             }
         }
+    }
 
         public class Queen extends Chesspiece {
             public Queen(char colour, char name) {
@@ -485,4 +491,3 @@ public class Chessboard {
             }
         }
     }
-}
