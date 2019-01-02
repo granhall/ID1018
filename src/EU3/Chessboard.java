@@ -11,6 +11,18 @@ public class Chessboard {
             this.row = row;
             this.column = column;
         }
+        public char getRow(){
+            return this.row;
+        }
+        public byte getColumn(){
+            return this.column;
+        }
+        public void setRow(char r){
+            this.row = r;
+        }
+        public void setColumn(byte c){
+            this.column = c;
+        }
 
         public void put(Chesspiece piece) {
             this.piece = piece;
