@@ -1,15 +1,18 @@
-package OU5;
+package EU4;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 @SuppressWarnings("Duplicates")
-public class Polyline {
+public class VPolyline {
     private Point[] vertices;
     private String colour = "black";
     private int width = 1;
 
-    public Polyline() {
+    public VPolyline() {
         this.vertices = new Point[0];
     }
 
-    public Polyline(Point[] vertices) {
+    public VPolyline(Point[] vertices) {
         this.vertices = new Point[vertices.length];
         for (int i = 0; i < vertices.length; i++) {
             this.vertices[i] = new Point(vertices[i]);
@@ -57,7 +60,7 @@ public class Polyline {
         return length;
     }
 
-    public void addLast(Point vertex) {
+    public void add(Point vertex) {
         Point[] h = new Point[this.vertices.length + 1];
         int i = 0;
         for (i = 0; i < this.vertices.length; i++) {
@@ -67,7 +70,7 @@ public class Polyline {
         this.vertices = h;
     }
 
-    public void addBefore(Point vertex, String vertexName) {
+    public void insertBefore(Point vertex, String vertexName) {
         Point refvertex = new Point(vertex); // copying in order for code to use a reference to parameter instead of parameter itself
         Point[] newArray = new Point[vertices.length + 1]; // new array one slot larger
         int current = 0;
@@ -103,30 +106,22 @@ public class Polyline {
 
         this.vertices = newArray; // creates new reference to the array with the vertex removed.
     }
+    public Iterator <Point> iterator(){
+        return new Iterator<Point>() {
+            int pos = 0;
 
-    public class PolylineIterator {
-        private int current = -1;
-
-        public PolylineIterator(){
-            if (Polyline.this.vertices.length > 0) {
-                current = 0;
+            public boolean hasNext() {
+                return vertices != null && pos < vertices.length;
             }
-        }
-        public boolean hasVertex() {
-            return current != -1;
-        }
-        public Point vertex () throws java.util.NoSuchElementException {
-            if (!this.hasVertex())
-                throw new java.util.NoSuchElementException("End of Iteration");
-                Point vertex = new Point (Polyline.this.vertices[current]);
-                return vertex;
-        }
-        public void advance () {
-            if (current >= 0 && current < Polyline.this.vertices.length -1) {
-                current++;
-            } else {
-                current = -1;
+            public Point next() {
+                if (hasNext()){
+                    Point current = vertices[pos];
+                    pos++;
+                    return current;
+                }
+                throw new NoSuchElementException("Exhausted Vertices");
             }
-        }
+        };
     }
 }
+
