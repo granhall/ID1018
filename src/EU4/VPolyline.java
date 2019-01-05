@@ -3,7 +3,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 @SuppressWarnings("Duplicates")
-public class VPolyline {
+public class VPolyline implements Polyline {
     private Point[] vertices;
     private String colour = "black";
     private int width = 1;
