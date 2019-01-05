@@ -41,7 +41,7 @@ public class NPolyline implements Polyline {
         sb.append("," + this.getWidth() + " , " + this.getColour() + " | length: " + this.length());
         return sb.toString();
     }
-    public Point[] getVerticies(){
+    public Point[] getVertices(){
         Point[] gvertices = new Point[size];
         int i = 0;
         Node n = this.vertices;
@@ -129,13 +129,29 @@ public class NPolyline implements Polyline {
     public Iterator<Point> iterator(){
         return new Iterator<Point>() {
             Node node = vertices;
+            int pos = 0;
+            private int findLength(){
+                Node current = vertices;
+                int result = 0;
+                while (current != null);{
+                    result++;
+                    current = current.nextNode;
+                }
+                return result;
+            }
+            int length = findLength();
             public boolean hasNext() {
-                return false;
+                return pos < length;
             }
-
             public Point next() {
-                return null;
+                if (hasNext()){
+                    pos++;
+                    Point result = node.vertex;
+                    node = node.nextNode;
+                    return result;
+                }
+                return node.vertex;
             }
-        }
+        };
     }
 }
