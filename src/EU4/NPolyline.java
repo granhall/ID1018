@@ -51,6 +51,8 @@ public class NPolyline implements Polyline {
         }
         return gvertices;
     }
+
+
     public String getColour(){
         return this.colour;
     }
@@ -65,14 +67,19 @@ public class NPolyline implements Polyline {
     }
     public double length() {
         double len = 0;
-        Node n = this.vertices; // vertices.nextNode?
-        Point p = new Point(this.vertices.vertex);
-        while (n != null){
-            len += Math.sqrt(Math.pow(p.getX() - n.vertex.getX(),2) + Math.pow(p.getY()-n.vertex.getY(),2)); // can we use .distance?
+        Point p = new Point (this.vertices.vertex);
+        Node n = vertices.nextNode;
+        while(n != null ) {
+            len += Math.sqrt(Math.pow(p.getX() - n.vertex.getX(), 2) + Math.pow(p.getY() - n.vertex.getY(), 2));
             p = n.vertex;
             n = n.nextNode;
         }
         return len;
+    }
+    private static double distanceBetweenVertices(Point p1, Point p2){
+        double vectorX = Math.pow(p2.getX()-p1.getX(),2);
+        double vectorY = Math.pow(p2.getY()-p1.getY(),2);
+        return Math.sqrt(vectorX + vectorY);
     }
     public void add(Point vertex){
         Node node = new Node(vertex);
@@ -133,7 +140,7 @@ public class NPolyline implements Polyline {
             private int findLength(){
                 Node current = vertices;
                 int result = 0;
-                while (current != null);{
+                while (current != null){
                     result++;
                     current = current.nextNode;
                 }
