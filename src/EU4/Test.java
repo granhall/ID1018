@@ -70,33 +70,33 @@ public class Test {
         System.out.println("\n");
         Polylines.shortYellow(vpoly);
 
-//        System.out.println("\n");
-//        System.out.println(" Now for NPoly: \n");
-//        Polyline[] npoly = new NPolyline[6];
-//        for (int i = 0; i < npoly.length; i++) {
-//            npoly[i] = new NPolyline();
-//            colour = rand.nextInt(2);
-//            switch (colour) {
-//                case 0:
-//                    npoly[i].setColour("blue");
-//                    break;
-//                case 1:
-//                    npoly[i].setColour("yellow");
-//                    break;
-//                case 2:
-//                    npoly[i].setColour("red");
-//                    break;
-//            }
-//            npoly[i].setWidth(2);
-//            pointsinarray = 6;
-//            while (pointsinarray > 0) {
-//                npoly[i].add(randomP());
-//                pointsinarray--;
-//            }
-//           System.out.println(npoly[i].toString());
-//        }
-//        System.out.println("\n");
-//       Polylines.shortYellow(npoly);
+        System.out.println("\n");
+        System.out.println(" Now for NPoly: \n");
+        Polyline[] npoly = new NPolyline[6];
+        for (int i = 0; i < npoly.length; i++) {
+            npoly[i] = new NPolyline();
+            colour = rand.nextInt(2);
+            switch (colour) {
+                case 0:
+                    npoly[i].setColour("blue");
+                    break;
+                case 1:
+                    npoly[i].setColour("yellow");
+                    break;
+                case 2:
+                    npoly[i].setColour("red");
+                   break;
+            }
+            npoly[i].setWidth(2);
+            pointsinarray = 6;
+            while (pointsinarray > 0) {
+                npoly[i].add(randomP());
+                pointsinarray--;
+           }
+         System.out.println(npoly[i].toString());
+        }
+       System.out.println("\n");
+       Polylines.shortYellow(npoly);
 
         System.out.println("\n");
         System.out.println(" Now for VPoly AND NPoly : \n");
