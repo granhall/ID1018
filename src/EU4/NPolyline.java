@@ -3,25 +3,28 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class NPolyline implements Polyline {
+    int size = 0;
     private static class Node {
         public Point vertex ;
+
         public Node nextNode ;
+
         public Node ( Point vertex ) {
-            this . vertex = vertex ;
+            this.vertex = vertex ;
             nextNode = null ;
         }
     }
-    int size = 0;
+
     private Node vertices ;
     private String colour = " black ";
     private int width = 1; // pixels
-    public NPolyline () {
-        this . vertices = null ;
+    public NPolyline () {this.vertices = null ;
     }
+
     public NPolyline ( Point [] vertices ) {
         if ( vertices . length > 0) {
-            Node node = new Node ( new Point ( vertices [0]));
-            this . vertices = node ;
+            Node node = new Node (new Point ( vertices [0]));
+            this.vertices = node ;
             size++;
             int pos = 1;
             while (pos < vertices . length ) {
@@ -65,14 +68,16 @@ public class NPolyline implements Polyline {
     public void setWidth(int width){
         this.width = width;
     }
+
     public double length() {
         double len = 0;
-        Node n = this.vertices; // n points to this.vertices
-        while(n.nextNode != null ) {
-            Point p = n.vertex; //new Point (this.vertices.vertex);
-            len += Math.sqrt(Math.pow(p.getX() - n.nextNode.vertex.getX(), 2) + Math.pow(p.getY() - n.nextNode.vertex.getY(), 2));
-            //p = n.vertex;
+        Node n = this.vertices;//vertices.nextNode;
+        while(n != null ) {
+            Point p = n.vertex;  //new Point(this.vertices.vertex);
             n = n.nextNode;
+            len += Math.sqrt(Math.pow(p.getX() - n.vertex.getX(), 2) + Math.pow(p.getY() - n.vertex.getY(), 2));
+            //p = n.vertex;
+
 
         }
         return len;

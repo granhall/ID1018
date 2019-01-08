@@ -440,6 +440,7 @@ public class Chessboard {
             public King(char color, char name) {
                 super(color, name);
             }
+
             public void markReachableFields() {
                 int r = row - FIRST_ROW;
                 int c = column - FIRST_COLUMN;
