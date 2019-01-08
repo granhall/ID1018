@@ -350,8 +350,8 @@ public class Chessboard {
     }
 
         public class Queen extends Chesspiece {
-            public Queen(char colour, char name) {
-                super(colour, name);
+            public Queen(char color, char name) {
+                super(color, name);
             }
 
             public void markReachableFields() {
