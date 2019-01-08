@@ -321,7 +321,7 @@ public class Chessboard {
                 Chessboard.this.fields[i++][j++].mark();
             }
             i = r + 1;
-            c = c - 1;
+            j = c - 1;
             while (i < NUMBER_OF_ROWS && j >= 0) {
                 Chessboard.this.fields[i++][j--].mark();
             }
@@ -347,7 +347,7 @@ public class Chessboard {
                 Chessboard.this.fields[i++][j++].unmark();
             }
             i = r + 1;
-            c = c - 1;
+            j = c - 1;
             while (i < NUMBER_OF_ROWS && j >= 0) {
                 Chessboard.this.fields[i++][j--].unmark();
             }
@@ -378,7 +378,7 @@ public class Chessboard {
                     Chessboard.this.fields[i++][j++].mark();
                 }
                 i = r + 1;
-                c = c - 1;
+                j = c - 1;
                 while (i < NUMBER_OF_ROWS && j >= 0) {
                     Chessboard.this.fields[i++][j--].mark();
                 }
@@ -416,7 +416,7 @@ public class Chessboard {
                     Chessboard.this.fields[i++][j++].unmark();
                 }
                 i = r + 1;
-                c = c - 1;
+                j = c - 1;
                 while (i < NUMBER_OF_ROWS && j >= 0) {
                     Chessboard.this.fields[i++][j--].unmark();
                 }
@@ -455,10 +455,10 @@ public class Chessboard {
                 if( c -1 > 0) {
                     Chessboard.this.fields[r][c - 1].mark();
                 }
-                if(r - 1 >= 0 ) {
+                if(r - 1 >= 0) {
                     Chessboard.this.fields[r - 1][c].mark();
                 }
-                if( c + 1 < NUMBER_OF_COLUMNS ) {
+                if(c + 1 < NUMBER_OF_COLUMNS ) {
                     Chessboard.this.fields[r][c + 1].mark();
                 }
                 if( r + 1 < NUMBER_OF_ROWS) {

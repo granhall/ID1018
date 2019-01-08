@@ -35,9 +35,9 @@ public class ChessTest {
         System.out.println(test.toString());
         Chessboard.King king = test.new King('w', 'K');
         System.out.println("King row: ");
-        pawn.setRow(in.next().charAt(0));
+        king.setRow(in.next().charAt(0));
         System.out.println("King column: ");
-        pawn.setColumn(in.nextByte());
+        king.setColumn(in.nextByte());
         king.markReachableFields();
         System.out.println(test.toString());
         king.unmarkReachableFields();
