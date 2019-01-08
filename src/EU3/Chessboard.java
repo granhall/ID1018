@@ -443,56 +443,59 @@ public class Chessboard {
             public void markReachableFields() {
                 int r = row - FIRST_ROW;
                 int c = column - FIRST_COLUMN;
-                if (r + 1 < NUMBER_OF_ROWS && c - 1 >= 0)
+                if(r-1 >= 0 && c+1 < NUMBER_OF_COLUMNS) {
+                    Chessboard.this.fields[r - 1][c + 1].mark();
+                }
+                if( r + 1 < NUMBER_OF_ROWS && c - 1 >= 0 ) {
                     Chessboard.this.fields[r + 1][c - 1].mark();
-                if (r + 1 < NUMBER_OF_ROWS && c + 1 < NUMBER_OF_COLUMNS) {
-                    Chessboard.this.fields[r + 1][c + 1].mark();
                 }
-                if (r - 1 >= 0 && c - 1 > 0) {
-                    Chessboard.this.fields[r + 1][c + 1].mark();
+                if( r - 1 >= 0 && c - 1 > 0 ) {
+                    Chessboard.this.fields[r - 1][c - 1].mark();
                 }
-                if (r - 1 >= 0 && c + 1 > 0) {
-                    Chessboard.this.fields[r + 1][c + 1].mark();
-                }
-                if (c + 1 < NUMBER_OF_COLUMNS) {
-                    Chessboard.this.fields[r][c + 1].mark();
-                }
-                if (c -1 < 0){
+                if( c -1 > 0) {
                     Chessboard.this.fields[r][c - 1].mark();
                 }
-                if (r + 1 < NUMBER_OF_ROWS){
-                    Chessboard.this.fields[r+1][c].mark();
+                if(r - 1 >= 0 ) {
+                    Chessboard.this.fields[r - 1][c].mark();
                 }
-                if (r - 1 < 0){
-                    Chessboard.this.fields[r-1][c].mark();
+                if( c + 1 < NUMBER_OF_COLUMNS ) {
+                    Chessboard.this.fields[r][c + 1].mark();
+                }
+                if( r + 1 < NUMBER_OF_ROWS) {
+                    Chessboard.this.fields[r + 1][c].mark();
+                }
+                if( r + 1 < NUMBER_OF_ROWS && c + 1 < NUMBER_OF_COLUMNS) {
+                    Chessboard.this.fields[r + 1][c + 1].mark();
                 }
             }
             public void unmarkReachableFields() {
                 int r = row - FIRST_ROW;
                 int c = column - FIRST_COLUMN;
-                if (r + 1 < NUMBER_OF_ROWS && c - 1 >= 0)
+                if(r-1 >= 0 && c+1 < NUMBER_OF_COLUMNS) {
+                    Chessboard.this.fields[r - 1][c + 1].unmark();
+                }
+                if( r + 1 < NUMBER_OF_ROWS && c - 1 >= 0 ) {
                     Chessboard.this.fields[r + 1][c - 1].unmark();
-                if (r + 1 < NUMBER_OF_ROWS && c + 1 < NUMBER_OF_COLUMNS) {
-                    Chessboard.this.fields[r + 1][c + 1].unmark();
                 }
-                if (r - 1 >= 0 && c - 1 > 0) {
-                    Chessboard.this.fields[r + 1][c + 1].unmark();
+                if( r - 1 >= 0 && c - 1 > 0 ) {
+                    Chessboard.this.fields[r - 1][c - 1].unmark();
                 }
-                if (r - 1 >= 0 && c + 1 > 0) {
-                    Chessboard.this.fields[r + 1][c + 1].unmark();
-                }
-                if (c + 1 < NUMBER_OF_COLUMNS) {
-                    Chessboard.this.fields[r][c + 1].unmark();
-                }
-                if (c -1 < 0){
+                if( c -1 >= 0) {
                     Chessboard.this.fields[r][c - 1].unmark();
                 }
-                if (r + 1 < NUMBER_OF_ROWS){
-                    Chessboard.this.fields[r+1][c].unmark();
+                if( r - 1 >= 0 ) {
+                    Chessboard.this.fields[r - 1][c].unmark();
                 }
-                if (r - 1 < 0){
-                    Chessboard.this.fields[r-1][c].unmark();
+                if( c + 1 < NUMBER_OF_COLUMNS ) {
+                    Chessboard.this.fields[r][c + 1].unmark();
+                }
+                if( r + 1 < NUMBER_OF_ROWS) {
+                    Chessboard.this.fields[r + 1][c].unmark();
+                }
+                if( r + 1 < NUMBER_OF_ROWS && c + 1 < NUMBER_OF_COLUMNS) {
+                    Chessboard.this.fields[r + 1][c + 1].unmark();
                 }
             }
+
         }
-    }
+}
