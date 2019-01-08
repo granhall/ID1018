@@ -89,6 +89,8 @@ public class Chessboard {
         protected byte column = -1;
 
         protected Chesspiece(char color, char name) {
+            this.color = color;
+            this.name = name;
         }
 
         public String toString() {
@@ -115,11 +117,14 @@ public class Chessboard {
         public void moveTo(char row, byte column) throws NotValidFieldException { //Exception found in separate file
             if (!Chessboard.this.isValidField(row, column))
                 throw new NotValidFieldException("bad field: " + row + column);
+            char rt = this.row;
+            byte ct = this.column;
             this.row = row;
             this.column = column;
             int r = row - FIRST_ROW;
             int c = column - FIRST_COLUMN;
             Chessboard.this.fields[r][c].put(this);
+            Chessboard.this.fields[rt - FIRST_ROW][ct - FIRST_COLUMN].piece = null;
         }
 
         public void moveOut() {
