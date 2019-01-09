@@ -14,9 +14,7 @@ public class Test {
     public static void main(String[] args) {
 
         Polyline polyline = null;
-        //polyline = new VPolyline();
-        polyline = new NPolyline();
-        System.out.println(" Currently : " + polyline.toString());
+       // System.out.println(" Currently : " + polyline.toString());
 
         Point[] points = new Point[]{
                 new Point("A", 1, 2),
@@ -25,8 +23,8 @@ public class Test {
                 new Point("D", 4, 6),
                 new Point("E", 5, 6),
                 new Point("F", 3, 8)};
-        //polyline = new VPolyline(points);
-        polyline = new NPolyline(points);
+        polyline = new VPolyline(points);
+        //polyline = new NPolyline(points);
         System.out.println(" After point: " + polyline.toString());
         polyline.setWidth(9);
         polyline.setColour("blue");
@@ -93,7 +91,7 @@ public class Test {
                 npoly[i].add(randomP());
                 pointsinarray--;
            }
-         System.out.println(npoly[i].toString());
+            System.out.println(npoly[i].toString());
         }
        System.out.println("\n");
        Polylines.shortYellow(npoly);

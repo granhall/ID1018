@@ -28,7 +28,7 @@ public class ReachableFieldsOnChessboard {
             System.out.println(chessBoard);
             pieces[i].markReachableFields();
             System.out.println(chessBoard);
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             pieces[i].unmarkReachableFields();
             System.out.println(chessBoard);
             pieces[i].moveOut();

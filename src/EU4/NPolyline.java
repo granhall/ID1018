@@ -72,16 +72,17 @@ public class NPolyline implements Polyline {
     public double length() {
         double len = 0;
         Node n = this.vertices;//vertices.nextNode;
-        while(n != null ) {
+        while(n.nextNode != null ) {
             Point p = n.vertex;  //new Point(this.vertices.vertex);
             n = n.nextNode;
-            len += Math.sqrt(Math.pow(p.getX() - n.vertex.getX(), 2) + Math.pow(p.getY() - n.vertex.getY(), 2));
+            len +=  p.distance(n.vertex); //Math.sqrt(Math.pow(p.getX() - n.vertex.getX(), 2) + Math.pow(p.getY() - n.vertex.getY(), 2));
             //p = n.vertex;
 
 
         }
         return len;
     }
+
     private static double distanceBetweenVertices(Point p1, Point p2){
         double vectorX = Math.pow(p2.getX()-p1.getX(),2);
         double vectorY = Math.pow(p2.getY()-p1.getY(),2);
