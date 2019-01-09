@@ -10,7 +10,6 @@ public class Polylines {
             shortestYellowN();
             shortestYellowNV();
         }
-
         private static void shortestYellowV(){
             Polyline longestNonYellowPolyline = new VPolyline(
                     new Point[]{
