@@ -3,18 +3,9 @@ import java.util.Random;
 @SuppressWarnings("Duplicates")
 public class Test {
 
-    public static Point randomP() {
-        Random r = new Random();
-        String s = "" + (char) (65 + r.nextInt(26));
-        int x = r.nextInt(10);
-        int y = r.nextInt(10);
-        return new Point(s, x, y);
-    }
-
     public static void main(String[] args) {
 
         Polyline polyline = null;
-       // System.out.println(" Currently : " + polyline.toString());
 
         Point[] points = new Point[]{
                 new Point("A", 1, 2),
@@ -38,104 +29,119 @@ public class Test {
         System.out.println("\n");
 
 
-        System.out.println("\n Now to test Polylines task 6");
+        System.out.println("Polylines task 6");
         Random rand = new Random();
+        System.out.println("Testing random VPolyline: ");
+        System.out.println();
         int colour;
-        int pointsinarray;
-        Polyline[] vpoly = new VPolyline[6];
-        for (int i = 0; i < vpoly.length; i++) {
-            vpoly[i] = new VPolyline();
+        int nofPoints;
+        Polyline[] vp = new VPolyline[7];
+        for(int i = 0; i < vp.length; i++) {
+            vp[i] = new VPolyline();
             colour = rand.nextInt(2);
-            switch (colour) {
+            switch(colour) {
                 case 0:
-                    vpoly[i].setColour("blue");
+                    vp[i].setColour("Yellow");
                     break;
                 case 1:
-                    vpoly[i].setColour("yellow");
+                    vp[i].setColour("Blue");
                     break;
                 case 2:
-                    vpoly[i].setColour("red");
+                    vp[i].setColour("Red");
                     break;
             }
-            vpoly[i].setWidth(2);
-            pointsinarray = 6;
-            while (pointsinarray > 0) {
-                vpoly[i].add(randomP());
-                pointsinarray--;
+            vp[i].setWidth(rand.nextInt(7));
+            nofPoints =6;
+            while(nofPoints > 0) {
+                vp[i].add(randomPoint());
+                nofPoints--;
             }
-            System.out.println(vpoly[i].toString());
-        }
-        System.out.println("\n");
-        Polylines.shortYellow(vpoly);
+            System.out.println(vp[i].toString());
 
-        System.out.println("\n");
-        System.out.println(" Now for NPoly: \n");
-        Polyline[] npoly = new NPolyline[6];
-        for (int i = 0; i < npoly.length; i++) {
-            npoly[i] = new NPolyline();
+        }
+        System.out.println();
+        Polylines.shortYellow(vp);
+        System.out.println();
+        System.out.println("Testing random NPolyline: ");
+        System.out.println();
+        Polyline[] np = new NPolyline[7];
+        for(int i = 0; i < np.length; i++) {
+            np[i] = new NPolyline();
             colour = rand.nextInt(2);
-            switch (colour) {
+            switch(colour) {
                 case 0:
-                    npoly[i].setColour("blue");
+                    np[i].setColour("Yellow");
                     break;
                 case 1:
-                    npoly[i].setColour("yellow");
+                    np[i].setColour("Blue");
                     break;
                 case 2:
-                    npoly[i].setColour("red");
-                   break;
+                    np[i].setColour("Red");
+                    break;
             }
-            npoly[i].setWidth(2);
-            pointsinarray = 6;
-            while (pointsinarray > 0) {
-                npoly[i].add(randomP());
-                pointsinarray--;
-           }
-            System.out.println(npoly[i].toString());
+            np[i].setWidth(rand.nextInt(7));
+            nofPoints = 6;
+            while(nofPoints > 0) {
+                np[i].add(randomPoint());
+                nofPoints--;
+            }
+            System.out.println(np[i].toString());
+
         }
-       System.out.println("\n");
-       Polylines.shortYellow(npoly);
-
-        System.out.println("\n");
-        System.out.println(" Now for VPoly AND NPoly : \n");
-
+        System.out.println();
+        Polylines.shortYellow(np);
+        System.out.println();
+        System.out.println("Testing random both NPolyine and VPolyline: ");
+        System.out.println();
         int type;
-        Polyline[] vnpoly = new Polyline[6];
-        for (int i = 0; i < vnpoly.length; i++) {
+        Polyline[] vpolnpol = new Polyline[7];
+        for(int i = 0; i < vpolnpol.length; i++) {
             type = rand.nextInt(2);
             switch (type) {
                 case 0:
-                    vnpoly[i] = new VPolyline();
+                    vpolnpol[i] = new VPolyline();
                     break;
                 case 1:
-                    vnpoly[i] = new NPolyline();
+                    vpolnpol[i] = new NPolyline();
+                    break;
             }
-            colour = rand.nextInt(2);
-            switch (colour) {
+            colour = rand.nextInt(3);
+            switch(colour) {
                 case 0:
-                    vnpoly[i].setColour("blue");
+                    vpolnpol[i].setColour("Yellow");
                     break;
                 case 1:
-                    vnpoly[i].setColour("yellow");
+                    vpolnpol[i].setColour("Blue");
                     break;
                 case 2:
-                    vnpoly[i].setColour("red");
+                    vpolnpol[i].setColour("Red");
                     break;
             }
-            vnpoly[i].setWidth(2);
-            pointsinarray = 6;
-            while (pointsinarray > 0) {
-                vnpoly[i].add(randomP());
-                pointsinarray--;
+            vpolnpol[i].setWidth(rand.nextInt(7));
+            nofPoints = 6;
+            while(nofPoints > 0) {
+                vpolnpol[i].add(randomPoint());
+                nofPoints--;
             }
-            switch (type){
-                case 0: System.out.println("Printing Vpoly:" + vnpoly[i].toString());
-                break;
+            switch (type) {
+                case 0:
+                    System.out.println("VPolyline: " + vpolnpol[i].toString());
+                    break;
                 case 1:
-                    System.out.println("Prinint Npoly: " + vnpoly[i].toString());
+                    System.out.println("NPolyline: " + vpolnpol[i].toString());
             }
+
         }
-        System.out.println("\n");
-        Polylines.shortYellow(vnpoly);
+        System.out.println();
+        Polylines.shortYellow(vpolnpol);
     }
+
+    public static Point randomPoint () {
+        Random rand = new Random();
+        String n = "" + (char) (65 + rand.nextInt (26));
+        int x = rand.nextInt (11);
+        int y = rand.nextInt (11);
+        return new Point (n, x, y);
+    }
+
 }
