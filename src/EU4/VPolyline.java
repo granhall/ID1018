@@ -20,12 +20,12 @@ public class VPolyline implements Polyline {
     }
 
     public String toString() {
-        StringBuilder pointinfo = new StringBuilder();
-        for (Point vertex : this.vertices) {
-            pointinfo.append(vertex.toString()); //IDE recommended the use of StringBuilder instead of concatenation
-            pointinfo.append(",");
+        StringBuilder sb = new StringBuilder();
+        for (Point point: this){
+            sb.append("(" + point.getName() + " , " + point.getX() + " , " + point.getY() + ")");
         }
-        return "(" + pointinfo + " " + colour + " " + width + ")";
+        sb.append("," + this.getWidth() + " , " + this.getColour() + " | length: " + this.length());
+        return sb.toString();
     }
 
     public Point[] getVertices() { // Unsure about this.

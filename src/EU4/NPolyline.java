@@ -36,10 +36,8 @@ public class NPolyline implements Polyline {
     }
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        Node n = this.vertices;
-        while (n != null){
-            sb.append("(" + n.vertex.getName() + " , " + n.vertex.getX() + " , " + n.vertex.getY() + ")");
-            n = n.nextNode;
+        for (Point point: this){//iterates over the points of the polyline, and thats possible because we implemented the java.lang.Iterable<Point> :)
+            sb.append("(" + point.getName() + " , " + point.getX() + " , " + point.getY() + ")");
         }
         sb.append("," + this.getWidth() + " , " + this.getColour() + " | length: " + this.length());
         return sb.toString();
@@ -72,10 +70,10 @@ public class NPolyline implements Polyline {
     public double length() {
         double len = 0;
         Node n = this.vertices;//vertices.nextNode;
-        while(n.nextNode != null ) {
-            Point p = n.vertex;  //new Point(this.vertices.vertex);
-            n = n.nextNode;
-            len +=  p.distance(n.vertex); //Math.sqrt(Math.pow(p.getX() - n.vertex.getX(), 2) + Math.pow(p.getY() - n.vertex.getY(), 2));
+        for (Point point: this){//while(n.nextNode != null ) {
+            //Point p = n.vertex;  //new Point(this.vertices.vertex);
+            //n = n.nextNode;
+            len +=  point.distance(n.vertex); //Math.sqrt(Math.pow(p.getX() - n.vertex.getX(), 2) + Math.pow(p.getY() - n.vertex.getY(), 2));
             //p = n.vertex;
 
 
@@ -89,55 +87,84 @@ public class NPolyline implements Polyline {
         return Math.sqrt(vectorX + vectorY);
     }
     public void add(Point vertex){
-        Node node = new Node(vertex);
+
         if (this.vertices == null) {
-            this.vertices = node;
+            this.vertices = new Node(vertex);
         }
         Node q = this.vertices;
-        while (q.nextNode != null){
-            q = q.nextNode;
+        while(true) {
+            if (q.nextNode != null) {
+                q = q.nextNode;
+            }else{
+                q.nextNode = new Node(vertex);
+                break;
+            }
         }
-        q.nextNode = node;
         size++;
     }
     public void insertBefore(Point vertex, String vertexName)throws NoSuchElementException {
-    Node node = new Node(vertex);
-    if (this.vertices.vertex.getName().equals(vertexName)){
-        node.nextNode = this.vertices;
-        this.vertices = node;
-    }
-    Node n = this.vertices;
-    boolean has = false;
-    while (n.nextNode != null){
-        if (n.nextNode.vertex.getName().equals(vertexName)){
-            node.nextNode = n.nextNode;
-            n.nextNode = n;
-            has = true;
-            n = n.nextNode;
+        /*Node node = new Node(vertex);
+        if (this.vertices.vertex.getName().equals(vertexName)){
+            node.nextNode = this.vertices;
+            this.vertices = node;
         }
-        n = n.nextNode;
-    }
-    size++;
-    if (!has){
-        throw new NoSuchElementException("None found");
-    }
-    }
-    public void remove(String vertexName)throws NoSuchElementException {
         Node n = this.vertices;
         boolean has = false;
-        if (this.vertices.vertex.getName().equals(vertexName)){
-            this.vertices = this.vertices.nextNode;
-        }
-        while (n != null){
-            if (n.vertex.getName().equals(vertexName)){
-                n = n.nextNode;
+        while (n.nextNode != null){
+            if (n.nextNode.vertex.getName().equals(vertexName)){
+                node.nextNode = n.nextNode;
+                n.nextNode = n;
                 has = true;
-                size--;
+                n = n.nextNode;
             }
             n = n.nextNode;
         }
-        if(!has){
+        size++;
+        if (!has){
             throw new NoSuchElementException("None found");
+        }*/
+        Node node = this.vertices;
+        Node newNode = new Node(vertex);
+        while(true) {
+            if (this.vertices.vertex.getName().equals(vertexName)){
+                newNode.nextNode = this.vertices;
+                size++;
+                break;
+            }else if (node.nextNode.vertex.getName().equals(vertexName)) {
+                newNode.nextNode = node.nextNode;
+                node.nextNode = newNode; // think it like a chain... we have found that the next node from the one we are
+                // is the node to remove, so we need to connect the node we have with the next of the next ah! yes smart leave this comment please :)
+                size++; // ++? xD
+                break;
+            }else if(node.nextNode != null){
+                node = node.nextNode;
+            }else{
+                throw new NoSuchElementException("None found");
+            }
+        }
+    }
+    public void remove(String vertexName)throws NoSuchElementException {
+        Node node = this.vertices;
+        while(true) {
+            if (this.vertices.vertex.getName().equals(vertexName)){
+                this.vertices = null;
+                size--;
+                break;
+            }else if (node.nextNode.vertex.getName().equals(vertexName)) {
+                if (node.nextNode.nextNode != null){
+                    node.nextNode.vertex = node.nextNode.nextNode.vertex;
+                    node.nextNode = node.nextNode.nextNode; // think it like a chain... we have found that the next node from the one we are
+                    // is the node to remove, so we need to connect the node we have with the next of the next ah! yes smart leave this comment please :)
+                }else{
+                    node.nextNode = null;
+                }
+                size--;
+                break;
+            }else if(node.nextNode != null){
+                node = node.nextNode;
+            }else{
+                throw new NoSuchElementException("None found");
+            }
         }
     }
     public Iterator<Point> iterator(){
