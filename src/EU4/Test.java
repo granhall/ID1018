@@ -85,8 +85,9 @@ public class Test {
                 np[i].add(randomPoint());
                 nofPoints--;
             }
-            System.out.println(np[i].toString());
-
+        }
+        for (int k = 0; k < np.length; k++){
+            System.out.println(np[k].toString());
         }
         System.out.println();
         Polylines.shortYellow(np);
