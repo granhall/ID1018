@@ -1,4 +1,5 @@
 package EU4;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 @SuppressWarnings("Duplicates")
@@ -37,21 +38,19 @@ public class NPolyline implements Polyline {
     }
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        for (Point point: this){ //iterates over the points of the polyline, and thats possible since java.lang.Iterable<Point> is implenmented from interface
+        for (Point point: this){ //iterates over the points of the polyline,  possible since java.lang.Iterable<Point> is implenmented from interface
             sb.append("(" + point.getName() + " , " + point.getX() + " , " + point.getY() + ")");
         }
         sb.append("," + this.getWidth() + " , " + this.getColour() + " | length: " + this.length());
         return sb.toString();
     }
     public Point[] getVertices(){
-        Point[] gvertices = new Point[size];
-        int i = 0;
-        Node n = this.vertices;
-        while (n != null){
-            gvertices[i] = n.vertex;
-            n = n.nextNode;
+        ArrayList<Point> gvertices = new ArrayList<>();
+
+        for (Point point: this) {
+            gvertices.add(point);
         }
-        return gvertices;
+        return gvertices.toArray(new Point[0]);
     }
 
 
@@ -69,10 +68,9 @@ public class NPolyline implements Polyline {
     }
 
     public double length() {
-        Node n = this.vertices;
         double len = 0;
-        for (Point point: this){ //iterates over polyline
-            len +=  point.distance(n.vertex);
+        for (int i = 0; i < getVertices().length-1; i++) {
+            len += NPolyline.distanceBetweenVertices(getVertices()[i], getVertices()[i+1]);
         }
         return len;
     }

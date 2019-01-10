@@ -26,8 +26,6 @@ public class test4 {
         polyline.add(new Point("just a name", 7,7));
         polyline.remove("E");
         polyline.insertBefore(new Point("O",0,0), "C");
-        System.out.println(polyline.toString());
-        System.out.println("\nA Polyline => "+ polyline.toString() +
-                " with length "+ Math.round(polyline.length()));
+        System.out.println("\nA Polyline => "+ polyline.toString());
     }
 }
