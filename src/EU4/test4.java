@@ -4,8 +4,8 @@ public class test4 {
 
     public static void main(String[] args) {
         Polyline polyline;
-        polyline = new VPolyline();
-        //polyline = new NPolyline();
+        //polyline = new VPolyline();
+        polyline = new NPolyline();
 
         System.out.println("An empty Polyline => "+ polyline.toString());
 
@@ -25,7 +25,7 @@ public class test4 {
 
         polyline.add(new Point("just a name", 7,7));
         polyline.remove("E");
-        polyline.insertBefore(new Point("O",0,0), "C"); // I don't have point O, problems will be solved one by one :D xD <3
+        polyline.insertBefore(new Point("O",0,0), "C");
         System.out.println(polyline.toString());
         System.out.println("\nA Polyline => "+ polyline.toString() +
                 " with length "+ Math.round(polyline.length()));

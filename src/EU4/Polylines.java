@@ -1,7 +1,6 @@
 package EU4;
 
-import java.util.Random;
-
+@SuppressWarnings("Duplicates")
 public class Polylines {
     @SuppressWarnings("Duplicates")
         public static void main(String[] args)
@@ -137,11 +136,11 @@ public class Polylines {
                                 currentPolyline = polylines[i];
                             }
                         }
-                    }// okay, so, give array of polylines, loop throught them with the condtions and if "Yellow" if found as a color, boolean becoems true
-                    // current polyline becomes that polyline correct!
+                    }// array of polylines, loop through them with the condtions and if "Yellow" if found as a color, boolean becomes true
+                    // currentpolyline becomes that polyline
                     i++;
                 }
             }
             return currentPolyline;
-        } // why print three times? o.o
+        }
 }

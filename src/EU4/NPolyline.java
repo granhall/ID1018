@@ -1,6 +1,7 @@
 package EU4;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+@SuppressWarnings("Duplicates")
 
 public class NPolyline implements Polyline {
     int size = 0;
@@ -36,7 +37,7 @@ public class NPolyline implements Polyline {
     }
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        for (Point point: this){//iterates over the points of the polyline, and thats possible because we implemented the java.lang.Iterable<Point> :)
+        for (Point point: this){ //iterates over the points of the polyline, and thats possible since java.lang.Iterable<Point> is implenmented from interface
             sb.append("(" + point.getName() + " , " + point.getX() + " , " + point.getY() + ")");
         }
         sb.append("," + this.getWidth() + " , " + this.getColour() + " | length: " + this.length());
@@ -68,15 +69,10 @@ public class NPolyline implements Polyline {
     }
 
     public double length() {
+        Node n = this.vertices;
         double len = 0;
-        Node n = this.vertices;//vertices.nextNode;
-        for (Point point: this){//while(n.nextNode != null ) {
-            //Point p = n.vertex;  //new Point(this.vertices.vertex);
-            //n = n.nextNode;
-            len +=  point.distance(n.vertex); //Math.sqrt(Math.pow(p.getX() - n.vertex.getX(), 2) + Math.pow(p.getY() - n.vertex.getY(), 2));
-            //p = n.vertex;
-
-
+        for (Point point: this){ //iterates over polyline
+            len +=  point.distance(n.vertex);
         }
         return len;
     }
@@ -103,26 +99,6 @@ public class NPolyline implements Polyline {
         size++;
     }
     public void insertBefore(Point vertex, String vertexName)throws NoSuchElementException {
-        /*Node node = new Node(vertex);
-        if (this.vertices.vertex.getName().equals(vertexName)){
-            node.nextNode = this.vertices;
-            this.vertices = node;
-        }
-        Node n = this.vertices;
-        boolean has = false;
-        while (n.nextNode != null){
-            if (n.nextNode.vertex.getName().equals(vertexName)){
-                node.nextNode = n.nextNode;
-                n.nextNode = n;
-                has = true;
-                n = n.nextNode;
-            }
-            n = n.nextNode;
-        }
-        size++;
-        if (!has){
-            throw new NoSuchElementException("None found");
-        }*/
         Node node = this.vertices;
         Node newNode = new Node(vertex);
         while(true) {
@@ -132,9 +108,9 @@ public class NPolyline implements Polyline {
                 break;
             }else if (node.nextNode.vertex.getName().equals(vertexName)) {
                 newNode.nextNode = node.nextNode;
-                node.nextNode = newNode; // think it like a chain... we have found that the next node from the one we are
-                // is the node to remove, so we need to connect the node we have with the next of the next ah! yes smart leave this comment please :)
-                size++; // ++? xD
+                node.nextNode = newNode; // chain... found that the next node from the one we are on is the 'before'
+                // need to connect the node we have with the next of the next
+                size++;
                 break;
             }else if(node.nextNode != null){
                 node = node.nextNode;
@@ -151,10 +127,10 @@ public class NPolyline implements Polyline {
                 size--;
                 break;
             }else if (node.nextNode.vertex.getName().equals(vertexName)) {
-                if (node.nextNode.nextNode != null){
+                if (node.nextNode.nextNode != null){ //checks that it is not the last in the list
                     node.nextNode.vertex = node.nextNode.nextNode.vertex;
-                    node.nextNode = node.nextNode.nextNode; // think it like a chain... we have found that the next node from the one we are
-                    // is the node to remove, so we need to connect the node we have with the next of the next ah! yes smart leave this comment please :)
+                    node.nextNode = node.nextNode.nextNode; //
+                    // node to remove, need to connect the node with the next of the next
                 }else{
                     node.nextNode = null;
                 }

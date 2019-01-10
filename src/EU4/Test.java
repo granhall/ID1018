@@ -1,6 +1,5 @@
 package EU4;
 
-import java.util.Random;
 @SuppressWarnings("Duplicates")
 public class Test {
     public static void main(String[] args)
@@ -144,14 +143,5 @@ public class Test {
             }
         }
         return currentPolyline;
-    }
-
-    public static Point randomPoint () {
-        Random rand = new Random();
-        String n = "" + (char) (65 + rand.nextInt (26));
-        int x = rand.nextInt (11);
-        int y = rand.nextInt (11);
-        System.out.println("gak");
-        return new Point (n, x, y);
     }
 }
